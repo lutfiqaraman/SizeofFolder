@@ -11,24 +11,10 @@ namespace SizeofFolder
     {
         static void Main(string[] args)
         {
-            try
-            {
-                string path = "c:\\your\\path\\is\\here\\";
-                string[] files = Directory.GetFiles(path);
-                double size = files.Select(file => new FileInfo(file).Length).Sum();
+            string path = "c:\\your\\dir\\path\\is\\here";
+            CalculateSize directory = new CalculateSize(path);
 
-                size = Math.Round(size / 1000000, 1);
-
-                if (size >= 300)
-                    Console.WriteLine("The size of directory is {0} MB. \n Directory is overloaded", size);
-                else
-                    Console.WriteLine("The size of directory is {0} MB. \n Directory is not overloaded", size);
-            }
-
-            catch (DirectoryNotFoundException dirEx)
-            {
-                Console.WriteLine("Directory not found: " + dirEx.Message);
-            }
+            directory.Size();
 
             Console.ReadKey();
         }
